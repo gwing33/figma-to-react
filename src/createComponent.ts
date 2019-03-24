@@ -1,12 +1,17 @@
 import * as Figma from 'figma-js';
 import * as prettier from 'prettier';
-import { getName } from 'getName';
+import { getName } from './getName';
 
 function addImport() {
   return `
     import * as React from 'react';
     import styled from 'styled-components';
   `;
+}
+
+// TODO - need to build out children
+function createChildren(children: ReadonlyArray<Figma.Node>): [string, string] {
+  return ['<div>Hello World!</div>', ''];
 }
 
 function addContainer(children: ReadonlyArray<Figma.Node>, reactChildren: string) {
@@ -17,28 +22,27 @@ function addContainer(children: ReadonlyArray<Figma.Node>, reactChildren: string
   return reactChildren;
 }
 
-// TODO - need to build out children
-function createChildren(children: ReadonlyArray<Figma.Node>): [string, string] {
-  return ['<div></div>', ''];
-}
-
-export function createComponent(node: null | Figma.Node): string {
+export function createComponent(node: null | Figma.Node): [null, null] | [string, string] {
   if (!node || node.type !== 'COMPONENT') {
-    return '';
+    return [null, null];
   }
 
   const [children, styledChildren] = createChildren(node.children);
-  console.log(children, styledChildren);
-
-  return prettier.format(`
+  const name = getName(node.name);
+  const component = prettier.format(
+    `
     ${addImport()}
 
-    export function ${getName(node.name)}() {
+    export function ${name}() {
       return (
         ${addContainer(node.children, children)}
       )
     }
 
     ${styledChildren}
-  `);
+  `,
+    { parser: 'babel' }
+  );
+
+  return [name, component];
 }
