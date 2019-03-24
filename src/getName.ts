@@ -22,13 +22,13 @@ export function cleanName(name: string): string {
 // Global map of all generated names, avoid duplicates
 const names: Object = {};
 
-export function getName(name: string, counter = 0): string {
+export function getName(name: string, prefix = '', counter = 0): string {
   const suffix = counter > 0 ? counter : '';
   const clearName = formatName(cleanName(name));
-  const fullName = clearName + suffix;
+  const fullName = prefix + clearName + suffix;
 
   if (names[fullName]) {
-    return getName(clearName, counter + 1);
+    return getName(clearName, prefix, counter + 1);
   }
   names[fullName] = fullName;
 

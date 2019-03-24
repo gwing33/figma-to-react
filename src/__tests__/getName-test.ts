@@ -21,6 +21,7 @@ describe('Get Name Tests', () => {
     expect(getName('Some component name')).toBe('SomeComponentName');
     expect(getName('Some-component name')).toBe('SomeComponentName1');
     expect(getName('Some-component.name')).toBe('SomeComponentName2');
+    expect(getName('Some-component.name', 'Styled')).toBe('StyledSomeComponentName');
     expect(getName('~!@#$%^&*()=+`[],?<>|\\{}Some-component.name')).toBe('SomeComponentName3');
     expect(getName('Some-component.name123')).toBe('SomeComponentName123');
     expect(getName('123Some-component.name123')).toBe('SomeComponentName1231');
