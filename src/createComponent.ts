@@ -1,22 +1,6 @@
 import * as Figma from 'figma-js';
 import * as prettier from 'prettier';
-
-// TODO - Need a cleanName,
-// TODO - Need a formatName
-
-let counter = 0;
-let names: string[] = [];
-function getName(name: string): string {
-  if (names.includes(name)) {
-    const newName = name + counter;
-    counter = counter + 1;
-    names = names.concat(newName);
-    return newName;
-  }
-  names = names.concat(name);
-
-  return name;
-}
+import { getName } from 'getName';
 
 function addImport() {
   return `

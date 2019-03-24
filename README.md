@@ -15,9 +15,9 @@ $ npm run build
 
 - [x] Fetch Figma file
 - [x] Find Figma file components
+- [x] Clean & format component names
 - [ ] Write out react component, somewhere
 - [ ] Setup sketchbook to render component
-- [ ] Clean & format component names
 - [ ] Build out a simple styled-components for each `Figma.Node`, also build the actual component out.
 
 ### Thoughts
