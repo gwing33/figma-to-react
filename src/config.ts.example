@@ -1,0 +1,6 @@
+const config = {
+  personalAccessToken: '',
+  fileId: '',
+};
+
+export default config;
