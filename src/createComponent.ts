@@ -45,7 +45,7 @@ function buildContent({ id, children, content }: Fiber): string {
   return 'null';
 }
 
-function createComponent(node: null | Figma.Node): [null | ReactComponent[], null | Fiber] {
+export function createComponent(node: null | Figma.Node): [null | ReactComponent[], null | Fiber] {
   if (node === null) {
     return [null, null];
   }
